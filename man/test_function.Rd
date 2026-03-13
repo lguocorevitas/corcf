@@ -12,7 +12,7 @@ test_function(num1, num2)
 \item{num2}{second number}
 }
 \value{
-A sum of the 2 numbers
+A sum of num1 + num2 squared
 }
 \description{
 Test function for educational purposes
