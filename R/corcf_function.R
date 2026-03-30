@@ -30,15 +30,6 @@
 #'   visitdate = c("2024-01-01", "2024-01-02", "2024-01-03"),
 #'   x = c(10, 21, 30)
 #' )
-#'
-#' res <- corcf(
-#'   master = master_df,
-#'   using = using_df,
-#'   vars = "x",
-#'   id = c("id", "visitdate")
-#' )
-#'
-#' res$ecode
 corcf <- function(master,
                   using,
                   vars = NULL,
