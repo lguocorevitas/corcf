@@ -18,44 +18,27 @@
 #'
 #' @returns comparison of two datasets based on unique ids
 #' @export
-#'
 #' @examples
-#' library(stringr)
-#' library(haven)
-#' library(lubridate)
-#' library(glue)
-#' library(tidyverse)
-#' for word output
-#' library(officer)
-#' library(flextable)
-#' tdy_date <- Sys.Date()
-#' tdy_year  <- sprintf("%04d", year(tdy_date))
-#' tdy_month <- sprintf("%02d", month(tdy_date))
-#' cut_date    <- as.Date(glue("{tdy_year}-{tdy_month}-01"))
-#' sharepoint <- "~/../../Thermo Fisher Scientific/"
-#' dir_ra_monthly  <- glue("{sharepoint}/Biostat Data Files - RA/monthly/")
-#' analytic_data  <- glue("{dir_ra_monthly}/{tdy_year}/{cut_date}/")
-
-#' data_name <-"visits_calc"
-#' test_data <- glue("{analytic_data}/rewrite/RA_{data_name}_{cut_date}.dta")
-#' current_data  <- glue("{analytic_data}/2_3_keyvisitvars_{cut_date}.dta")
-#' id_cols <- c("id", "visitdate")
-#'
-#' master_df <- read_dta(test_data)
-#' using_df  <- read_dta(current_data)
-#' if (!"id" %in% names(using_df)) using_df <- using_df %>% mutate(id = subject_number)
-
-#' res <- corcf(
-#'  master = master_df,
-#'  using  = using_df,
-#'  vars   = "_all",
-#'  id     = id_cols
-#'  # ,verbose1 = 200
+#' master_df <- data.frame(
+#'   id = c(1, 2, 3),
+#'   visitdate = c("2024-01-01", "2024-01-02", "2024-01-03"),
+#'   x = c(10, 20, 30)
 #' )
 #'
-#' names(res$label_conflicts)
-#' res$ecode # if code =106 means you hit at least one type mismatch
-#' names(res$label_conflicts)
+#' using_df <- data.frame(
+#'   id = c(1, 2, 3),
+#'   visitdate = c("2024-01-01", "2024-01-02", "2024-01-03"),
+#'   x = c(10, 21, 30)
+#' )
+#'
+#' res <- corcf(
+#'   master = master_df,
+#'   using = using_df,
+#'   vars = "x",
+#'   id = c("id", "visitdate")
+#' )
+#'
+#' res$ecode
 corcf <- function(master,
                   using,
                   vars = NULL,
