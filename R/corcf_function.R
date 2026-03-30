@@ -20,10 +20,13 @@
 #' @export
 #'
 #' @examples
+#' library(stringr)
+#' library(haven)
+#' library(lubridate)
+#' library(glue)
 #' tdy_date <- Sys.Date()
 #' tdy_year  <- sprintf("%04d", year(tdy_date))
 #' tdy_month <- sprintf("%02d", month(tdy_date))
-
 #' cut_date    <- as.Date(glue("{tdy_year}-{tdy_month}-01"))
 #' sharepoint <- "~/../../Thermo Fisher Scientific/"
 #' dir_ra_monthly  <- glue("{sharepoint}/Biostat Data Files - RA/monthly/")
