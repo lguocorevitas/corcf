@@ -24,6 +24,10 @@
 #' library(haven)
 #' library(lubridate)
 #' library(glue)
+#' library(tidyverse)
+#' for word output
+#' library(officer)
+#' library(flextable)
 #' tdy_date <- Sys.Date()
 #' tdy_year  <- sprintf("%04d", year(tdy_date))
 #' tdy_month <- sprintf("%02d", month(tdy_date))

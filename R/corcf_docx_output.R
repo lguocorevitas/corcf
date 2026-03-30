@@ -1,6 +1,4 @@
-library(officer)
-library(flextable)
-conflicted::conflicts_prefer(flextable::width)
+
 
 `%||%` <- function(a, b) if (!is.null(a)) a else b
 
