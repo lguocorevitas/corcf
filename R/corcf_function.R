@@ -1,22 +1,22 @@
-#'#'#' Title
+#' Title corcf
 #'
-#' @param master
-#' @param using
-#' @param vars
-#' @param id
-#' @param verbose
-#' @param verbose1
-#' @param all
-#' @param masterlist
-#' @param usinglist
-#' @param separator
-#' @param sepby
-#' @param reldif
-#' @param nodecrease
-#' @param label_conflicts
-#' @param print_label_conflicts
+#' @param master master data
+#' @param using using data
+#' @param vars variables to be compared
+#' @param id unique id
+#' @param verbose details of comparisons
+#' @param verbose1 limited details of comparisons
+#' @param all all variables to be compared
+#' @param masterlist master variable list
+#' @param usinglist using variable list
+#' @param separator separator for lists
+#' @param sepby sepby
+#' @param reldif not tested yet
+#' @param nodecrease not tested yet
+#' @param label_conflicts conflicts of value labels
+#' @param print_label_conflicts output conflict of value labels
 #'
-#' @returns
+#' @returns comparison of two datasets based on unique ids
 #' @export
 #'
 #' @examples
@@ -56,7 +56,6 @@
 #' names(res$label_conflicts)
 #' res$ecode # if code =106 means you hit at least one type mismatch
 #' names(res$label_conflicts)
-
 corcf <- function(master,
                   using,
                   vars = NULL,
