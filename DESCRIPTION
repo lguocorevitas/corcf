@@ -1,10 +1,18 @@
 Package: corcf
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Type: Package
+Title: Compare Datasets by ID and Variable Values
+Version: 0.1.0
+Authors@R: person("Lin", "Guo", email = "lin.guo1@thermofisher.com", role = c("aut", "cre"))
+Description: Compare master and using datasets, summarize mismatches, and create Word reports.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Imports:
+    data.table,
+    flextable,
+    officer,
+    vctrs
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
