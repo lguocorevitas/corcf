@@ -1,5 +1,3 @@
-
-
 `%||%` <- function(a, b) if (!is.null(a)) a else b
 
 #' Title
@@ -15,16 +13,6 @@
 #' @export
 #'
 #' @examples
-#' tdy_date <- Sys.Date()
-#'   write_corcf_word(
-#' res,
-#' master_path = test_data,
-#' using_path  = current_data,
-#' id_cols     = id_cols,
-#' path = glue("{analytic_data}/rewrite/QC/corcf_results_{data_name}_{tdy_date}.docx"),
-#' report_date = Sys.Date()
-#' )
-
 write_corcf_word <- function(res,
                              master_path,
                              using_path,
