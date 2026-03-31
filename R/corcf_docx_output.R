@@ -202,7 +202,30 @@ write_corcf_word <- function(res,
 
     doc <- flextable::body_add_flextable(doc, ft_lc)
   }
+  if (!is.null(res$verbose_details) && length(res$verbose_details) > 0L) {
+    doc <- officer::body_add_par(doc, "Verbose mismatch details", style = "heading 2")
 
+    for (v in names(res$verbose_details)) {
+      df <- res$verbose_details[[v]]
+
+      doc <- officer::body_add_par(
+        doc,
+        sprintf("%s (%s mismatches)", v, nrow(df)),
+        style = "heading 3"
+      )
+
+      ft_v <- flextable::flextable(df)
+      ft_v <- flextable::fontsize(ft_v, part = "all", size = 9)
+      ft_v <- flextable::autofit(ft_v)
+      ft_v <- flextable::set_table_properties(
+        ft_v,
+        layout = "autofit",
+        width = 1
+      )
+
+      doc <- flextable::body_add_flextable(doc, ft_v)
+    }
+  }
   print(doc, target = path)
   invisible(path)
 }

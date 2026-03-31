@@ -435,6 +435,7 @@ corcf <- function(master,
   value_mismatch <- 0L
   nomatch <- 0L
   per_var <- list()
+  verbose_details <- list()
   ecode <- 0L
 
   for (v in vars_cmp) {
@@ -502,13 +503,36 @@ corcf <- function(master,
         listing[, master_data := get(vm)]
         listing[, using_data := get(vu)]
 
+        cols <- c(
+          if (is.null(id)) ".rowkey" else id,
+          sepby,
+          "master_data",
+          "using_data"
+        )
+        cols <- cols[!is.na(cols) & nzchar(cols)]
+        cols <- unique(cols)
+        cols <- cols[cols %in% names(listing)]
+
+        verbose_df <- as.data.frame(listing[, ..cols])
+
+        if (!is.null(sepby) && length(sepby) > 0L && all(sepby %in% names(verbose_df))) {
+          ord <- do.call(order, verbose_df[, sepby, drop = FALSE])
+          verbose_df <- verbose_df[ord, , drop = FALSE]
+        }
+
+        if (!is.null(verbose1) && nrow(verbose_df) > verbose1) {
+          verbose_df <- verbose_df[seq_len(verbose1), , drop = FALSE]
+        }
+
+        verbose_details[[v]] <- verbose_df
+
         print_mismatches(
-          df = as.data.frame(listing),
+          df = verbose_df,
           id = if (is.null(id)) ".rowkey" else id,
           sepby = sepby,
           master_col = "master_data",
           using_col = "using_data",
-          max_rows = if (max_print > 0L) max_print else NULL,
+          max_rows = NULL,
           separator = separator
         )
         cat("\n\n")
@@ -542,6 +566,7 @@ corcf <- function(master,
       value_mismatch = value_mismatch,
       nomatch = nomatch,
       per_variable = per_var,
+      verbose_details = verbose_details,
       label_conflicts = label_conflict_list,
       vars_missing_in_using = vars_missing_in_using,
       vars_missing_in_master = vars_missing_in_master
