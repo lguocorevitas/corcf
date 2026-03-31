@@ -1,3 +1,4 @@
+
 `%||%` <- function(a, b) if (!is.null(a)) a else b
 
 #' Compare two datasets by key and variable values
@@ -30,66 +31,9 @@
 #' @returns A list of class `"corcf_result"` containing merge counts, error code,
 #'   mismatch summaries, per-variable results, label conflicts, and variable
 #'   availability summaries.
-#'
-#' @export
-#'
-#' @examples
-#' master_df <- data.frame(
-#'   id = c(1, 2, 3),
-#'   visitdate = c("2024-01-01", "2024-01-02", "2024-01-03"),
-#'   x = c(10, 20, 30),
-#'   stringsAsFactors = FALSE
-#' )
-#'
-#' using_df <- data.frame(
-#'   id = c(1, 2, 3),
-#'   visitdate = c("2024-01-01", "2024-01-02", "2024-01-03"),
-#'   x = c(10, 21, 30),
-#'   stringsAsFactors = FALSE
-#' )
-#'
-#' res <- corcf(
-#'   master = master_df,
-#'   using = using_df,
-#'   vars = "x",
-#'   id = c("id", "visitdate")
-#' )
-#'
-#' res$ecode
-#' res$value_mismatch
-`%||%` <- function(a, b) if (!is.null(a)) a else b
-
-#' Compare two datasets by key and variable values
-#'
-#' Compare a master dataset and a using dataset across selected variables,
-#' optionally keyed by one or more ID columns. The function reports merge-style
-#' counts, type mismatches, value mismatches, and value-label conflicts.
-#'
-#' @param master A data frame containing the master data.
-#' @param using A data frame containing the using data, or a path to a CSV file.
-#' @param vars Character vector of variables to compare. Use `"_all"` or `NULL`
-#'   to compare all variables except the ID columns.
-#' @param id Optional character vector of unique ID columns.
-#' @param verbose Logical; if `TRUE`, print mismatched records.
-#' @param verbose1 Optional positive integer limiting the number of mismatched
-#'   rows printed per variable. Also turns on `verbose`.
-#' @param all Logical; if `TRUE`, also print variables that match.
-#' @param masterlist Logical; if `TRUE`, print IDs found only in `master`.
-#' @param usinglist Logical; if `TRUE`, print IDs found only in `using`.
-#' @param separator Optional positive integer controlling grouped printing of
-#'   mismatch output.
-#' @param sepby Optional character vector of columns used to sort mismatch output.
-#' @param reldif Optional numeric tolerance for relative difference comparisons
-#'   on numeric variables.
-#' @param nodecrease Logical; only report relative-difference mismatches where
-#'   the master value is greater than or equal to the using value.
-#' @param label_conflicts Logical; if `TRUE`, detect value-label conflicts.
-#' @param print_label_conflicts Logical; if `TRUE`, print detected label conflicts.
-#'
-#' @returns A list of class `"corcf_result"` containing merge counts, error code,
-#'   mismatch summaries, per-variable results, label conflicts, and variable
-#'   availability summaries.
-#'
+#' @keywords internal
+#' @import data.table
+"_PACKAGE"
 #' @export
 #'
 #' @examples
