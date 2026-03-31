@@ -524,8 +524,8 @@ corcf <- function(master,
           verbose_df <- verbose_df[ord, , drop = FALSE]
         }
 
-        if (!is.null(verbose1) && nrow(verbose_df) > verbose1) {
-          verbose_df <- verbose_df[seq_len(verbose1), , drop = FALSE]
+        if (max_print > 0L && nrow(verbose_df) > max_print) {
+          verbose_df <- verbose_df[seq_len(max_print), , drop = FALSE]
         }
 
         verbose_details[[v]] <- verbose_df
