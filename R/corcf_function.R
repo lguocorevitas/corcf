@@ -66,6 +66,7 @@ corcf <- function(master,
                   id = NULL,
                   verbose = FALSE,
                   verbose1 = NULL,
+                  verbose_vars = NULL,
                   all = FALSE,
                   masterlist = FALSE,
                   usinglist = FALSE,
@@ -75,7 +76,7 @@ corcf <- function(master,
                   nodecrease = FALSE,
                   label_conflicts = TRUE,
                   print_label_conflicts = TRUE) {
-
+  verbose_vars <- if (is.null(verbose_vars)) NULL else as.character(verbose_vars)
   stop198 <- function(msg) stop(msg, call. = FALSE)
 
   is_labelled_any <- function(x) {
@@ -498,7 +499,10 @@ corcf <- function(master,
       message(sprintf("%s: %d mismatches", v, n_mism))
       per_var[[v]] <- list(status = "mismatch", n = n_mism)
 
-      if (verbose) {
+      do_verbose <- isTRUE(verbose) &&
+        (is.null(verbose_vars) || v %in% verbose_vars)
+
+      if (do_verbose) {
         listing <- common[mism_idx]
         listing[, master_data := get(vm)]
         listing[, using_data := get(vu)]
