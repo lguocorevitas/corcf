@@ -33,7 +33,7 @@
 #'   availability summaries.
 #' @keywords internal
 #' @import data.table
-"_PACKAGE"
+#'
 #' @export
 #'
 #' @examples

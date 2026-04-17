@@ -16,37 +16,14 @@
 #' @export
 #'
 #' @examples
-#' res <- list(
-#'   ecode = 9L,
-#'   n_master = 3L,
-#'   n_using = 3L,
-#'   type_mismatch = 0L,
-#'   value_mismatch = 1L,
-#'   merge_counts = list(
-#'     not_matched = 0L,
-#'     master_only = 0L,
-#'     using_only = 0L,
-#'     matched = 3L
-#'   ),
-#'   per_variable = list(
-#'     x = list(status = "mismatch", n = 1L),
-#'     y = list(status = "match", n = 0L)
-#'   ),
-#'   label_conflicts = list(),
-#'   vars_missing_in_using = character(),
-#'   vars_missing_in_master = character()
+#' corcf::write_corcf_word(
+#'   res,
+#'   master_path = test_data,
+#'   using_path  = current_data,
+#'   id_cols     = id_cols,
+#'   path = glue("{analytic_data}/rewrite/QC/corcf_results_{data_name}_{tdy_date}_verbose.docx"),
+#'   report_date = Sys.Date()
 #' )
-#'
-#' tmp <- tempfile(fileext = ".docx")
-#' \dontrun{
-#'   write_corcf_word(
-#'     res = res,
-#'     master_path = "master.csv",
-#'     using_path = "using.csv",
-#'     id_cols = c("id"),
-#'     path = tmp
-#'   )
-#' }
 write_corcf_word <- function(res,
                              master_path,
                              using_path,
