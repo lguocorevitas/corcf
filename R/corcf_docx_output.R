@@ -21,9 +21,10 @@
 #'   master_path = test_data,
 #'   using_path  = current_data,
 #'   id_cols     = id_cols,
-#'   path = glue("{analytic_data}/rewrite/QC/corcf_results_{data_name}_{tdy_date}_verbose.docx"),
+#'   path = glue("{your_path}/report_name.docx"),
 #'   report_date = Sys.Date()
 #' )
+#' #more details provided at ./Examples/00000_testing_corcf.R
 write_corcf_word <- function(res,
                              master_path,
                              using_path,
