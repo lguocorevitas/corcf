@@ -55,7 +55,7 @@ res <- corcf::corcf(
 # names(res$label_conflicts)
 # res$per_variable
 
-# generate a word document for report 
+# generate a word document for report
 
 corcf::write_corcf_word(
   res,
@@ -66,27 +66,27 @@ corcf::write_corcf_word(
   report_date = Sys.Date()
 )
 
-# Another example, testing UAT/prod raw data: bv_subjects 
+# Another example, testing UAT/prod raw data: bv_subjects
 
 data_name <-"bv_subjects"
-test_data <- glue("{analytic_data}/bv_raw/UAT_20260330/{data_name}.dta")
-current_data  <- glue("{analytic_data}/bv_raw/{data_name}.dta")
 
+prev_data <- glue("{dir_ra_monthly}/2026/2026-03-01/bv_raw/{data_name}.dta")
+current_data  <- glue("{analytic_data}/bv_raw/{data_name}.dta")
 id_cols <- c("subject_number")
 
-master_df <- read_dta(test_data)
-using_df  <- read_dta(current_data)
-# to compare specific variables 
+master_df <- read_dta(current_data)
+using_df  <- read_dta(prev_data)
+# to compare specific variables
 # var_list <- c("c_birth_year", "diagnosis_date", "diagnosis_year", "exit_form_date")
 
 # run corcf function
-res <- corcf(
+res <- corcf::corcf(
   master = master_df,
   using = using_df,
   vars = "_all",
   id = id_cols,
-  verbose = TRUE,
-  verbose_vars = c("c_birth_year", "diagnosis_date")
+  # verbose = TRUE,
+  # verbose_vars = c("c_birth_year", "diagnosis_date")
 )
 
 names(res)
@@ -109,12 +109,12 @@ res <- corcf::corcf(
   # ,verbose1 = 200
 )
 
-# generate a word document for report 
+# generate a word document for report
 
 corcf::write_corcf_word(
   res,
-  master_path = test_data,
-  using_path  = current_data,
+  master_path = current_data,
+  using_path  = prev_data,
   id_cols     = id_cols,
   path = glue("{analytic_data}/rewrite/QC/corcf_results_{data_name}_{tdy_date}_verbose.docx"),
   report_date = Sys.Date()
